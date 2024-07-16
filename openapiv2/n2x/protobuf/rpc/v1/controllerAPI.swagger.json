@@ -1,0 +1,260 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "n2x-controller-api",
+    "version": "1.0",
+    "contact": {
+      "name": "n2x-api",
+      "url": "https://github.com/n2x-io/x-api"
+    },
+    "license": {
+      "name": "Apache-2.0 License",
+      "url": "https://github.com/n2x-io/x-api/blob/master/LICENSE"
+    }
+  },
+  "tags": [
+    {
+      "name": "ControllerAPI"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/accounts/{accountID}:stats": {
+      "get": {
+        "operationId": "ControllerAPI_GetAccountStats",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/accountStats"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ControllerAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}:usage": {
+      "get": {
+        "operationId": "ControllerAPI_GetAccountUsage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/accountUsage"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ControllerAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "accountStats": {
+      "type": "object",
+      "properties": {
+        "usage": {
+          "$ref": "#/definitions/accountUsage"
+        }
+      }
+    },
+    "accountUsage": {
+      "type": "object",
+      "properties": {
+        "lastUpdated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "tenants": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "networks": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "subnets": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nodes": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "endpoints": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "relays": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "VSs": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "appSvcs": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "users": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "securityGroups": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "roles": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ACLs": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "admUsers": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "IAPUsers": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "projects": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "workflows": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "service items usage"
+    },
+    "authAuthKey": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        }
+      }
+    },
+    "controllerController": {
+      "type": "object",
+      "properties": {
+        "locationID": {
+          "type": "string"
+        },
+        "federationID": {
+          "type": "string"
+        },
+        "controllerID": {
+          "type": "string",
+          "title": "string federationToken = 3;"
+        },
+        "authKey": {
+          "$ref": "#/definitions/authAuthKey"
+        },
+        "virtualHost": {
+          "type": "string"
+        },
+        "host": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32",
+          "title": "string privateHost = 33;"
+        },
+        "status": {
+          "$ref": "#/definitions/controllerStatus"
+        }
+      }
+    },
+    "controllerStatus": {
+      "type": "object",
+      "properties": {
+        "lastUpdated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "connections": {
+          "type": "integer",
+          "format": "int32",
+          "title": "int32 connectedUsers = 3;"
+        }
+      }
+    },
+    "emptyResponse": {
+      "type": "object"
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    }
+  }
+}

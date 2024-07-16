@@ -1,0 +1,1050 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "n2x-nstore-api",
+    "version": "1.0",
+    "contact": {
+      "name": "n2x-api",
+      "url": "https://github.com/n2x-io/x-api"
+    },
+    "license": {
+      "name": "Apache-2.0 License",
+      "url": "https://github.com/n2x-io/x-api/blob/master/LICENSE"
+    }
+  },
+  "tags": [
+    {
+      "name": "NStoreAPI"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/accounts/{request.accountID}/tenants/{request.tenantID}/nodes/{request.nodeID}/nstore:hostmetrics": {
+      "post": {
+        "summary": "Gets node hostMetrics.",
+        "operationId": "NStoreAPI_GetNodeHostMetrics",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/metricsdbHostMetricsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "request.accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "request.tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "request.nodeID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NStoreAPIGetNodeHostMetricsBody"
+            }
+          }
+        ],
+        "tags": [
+          "NStoreAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{request.accountID}/tenants/{request.tenantID}/nodes/{request.nodeID}/nstore:hostsecurity": {
+      "post": {
+        "summary": "Gets node hostSecurityReport.",
+        "operationId": "NStoreAPI_GetNodeHostSecurityReport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hsecdbHostSecurityReportResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "request.accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "request.tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "request.nodeID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NStoreAPIGetNodeHostSecurityReportBody"
+            }
+          }
+        ],
+        "tags": [
+          "NStoreAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{request.accountID}/tenants/{request.tenantID}/nodes/{request.nodeID}/nstore:netctlog": {
+      "post": {
+        "summary": "Gets node netConntrackLog.",
+        "operationId": "NStoreAPI_GetNodeNetCtLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/netdbConntrackLogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "request.accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "request.tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "request.nodeID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NStoreAPIGetNodeNetCtLogBody"
+            }
+          }
+        ],
+        "tags": [
+          "NStoreAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{request.accountID}/tenants/{request.tenantID}/nodes/{request.nodeID}/nstore:netctstate": {
+      "post": {
+        "summary": "Gets node netConntrackState.",
+        "operationId": "NStoreAPI_GetNodeNetCtState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/netdbConntrackTableResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "request.accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "request.tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "request.nodeID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NStoreAPIGetNodeNetCtStateBody"
+            }
+          }
+        ],
+        "tags": [
+          "NStoreAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{request.accountID}/tenants/{request.tenantID}/nodes/{request.nodeID}/nstore:nettraffic": {
+      "post": {
+        "summary": "Gets node netTrafficMetrics.",
+        "operationId": "NStoreAPI_GetNodeNetTrafficMetrics",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/netdbTrafficMetricsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "request.accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "request.tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "request.nodeID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NStoreAPIGetNodeNetTrafficMetricsBody"
+            }
+          }
+        ],
+        "tags": [
+          "NStoreAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "NStoreAPIGetNodeHostMetricsBody": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "type": "object",
+          "properties": {
+            "controllerID": {
+              "type": "string"
+            },
+            "queryID": {
+              "type": "string"
+            }
+          }
+        },
+        "type": {
+          "$ref": "#/definitions/metricsdbHostMetricsQueryType"
+        },
+        "timeRange": {
+          "$ref": "#/definitions/nstoreTimeRange",
+          "title": "namespace"
+        }
+      }
+    },
+    "NStoreAPIGetNodeHostSecurityReportBody": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "type": "object",
+          "properties": {
+            "controllerID": {
+              "type": "string"
+            },
+            "queryID": {
+              "type": "string"
+            }
+          }
+        },
+        "type": {
+          "$ref": "#/definitions/hsecdbReportQueryType"
+        }
+      }
+    },
+    "NStoreAPIGetNodeNetCtLogBody": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "type": "object",
+          "properties": {
+            "controllerID": {
+              "type": "string"
+            },
+            "queryID": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "NStoreAPIGetNodeNetCtStateBody": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "type": "object",
+          "properties": {
+            "controllerID": {
+              "type": "string"
+            },
+            "queryID": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "NStoreAPIGetNodeNetTrafficMetricsBody": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "type": "object",
+          "properties": {
+            "controllerID": {
+              "type": "string"
+            },
+            "queryID": {
+              "type": "string"
+            }
+          }
+        },
+        "type": {
+          "$ref": "#/definitions/netdbTrafficQueryType"
+        }
+      }
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "hsecdbHostSecurityReportResponse": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "nodeID": {
+          "type": "string"
+        },
+        "queryID": {
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/definitions/hsecdbReportMetadata"
+        },
+        "vulnReport": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/hsecdbVulnerabilityReport"
+          }
+        },
+        "osPkgsReport": {
+          "$ref": "#/definitions/hsecdbOSPkgsReport"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "hsecdbOSPkgsReport": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "totalPkgs": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pkgs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/hsecdbPkg"
+          }
+        }
+      }
+    },
+    "hsecdbPkg": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "string pkgID = 1;"
+        },
+        "version": {
+          "type": "string"
+        },
+        "release": {
+          "type": "string"
+        },
+        "epoch": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "arch": {
+          "type": "string"
+        },
+        "licenses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "maintainer": {
+          "type": "string"
+        },
+        "installedFiles": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "hsecdbReportMetadata": {
+      "type": "object",
+      "properties": {
+        "osName": {
+          "type": "string"
+        },
+        "osFamily": {
+          "type": "string"
+        }
+      }
+    },
+    "hsecdbReportQueryType": {
+      "type": "string",
+      "enum": [
+        "REPORT_UNSPECIFIED",
+        "REPORT_OS_PKGS",
+        "REPORT_VULNERABILITIES",
+        "REPORT_MISCONFIGS",
+        "REPORT_SECRETS",
+        "REPORT_LICENSES"
+      ],
+      "default": "REPORT_UNSPECIFIED"
+    },
+    "hsecdbVulnTotals": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "unknown": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "low": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "medium": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "high": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "critical": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "hsecdbVulnerability": {
+      "type": "object",
+      "properties": {
+        "vulnerabilityID": {
+          "type": "string"
+        },
+        "pkgName": {
+          "type": "string"
+        },
+        "installedVersion": {
+          "type": "string"
+        },
+        "fixedVersion": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "primaryURL": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "string"
+        },
+        "publishedDate": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "hsecdbVulnerabilityReport": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "totals": {
+          "$ref": "#/definitions/hsecdbVulnTotals"
+        },
+        "vulnerabilities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/hsecdbVulnerability"
+          }
+        }
+      }
+    },
+    "metricsdbHostMetrics": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/metricsdbMetricValue"
+          },
+          "title": "map[HostMetricType]*MetricValue"
+        }
+      }
+    },
+    "metricsdbHostMetricsQueryType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_QUERY",
+        "QUERY_NET_USAGE",
+        "QUERY_LOAD_AVG",
+        "QUERY_CPU_USAGE",
+        "QUERY_MEM_USAGE",
+        "QUERY_DISK_USAGE"
+      ],
+      "default": "UNKNOWN_QUERY"
+    },
+    "metricsdbHostMetricsResponse": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "nodeID": {
+          "type": "string"
+        },
+        "queryID": {
+          "type": "string"
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/metricsdbHostMetrics"
+          }
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "metricsdbMetricValue": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "netdbAddressFamily": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_AF",
+        "IP4",
+        "IP6"
+      ],
+      "default": "UNKNOWN_AF"
+    },
+    "netdbConnection": {
+      "type": "object",
+      "properties": {
+        "AF": {
+          "$ref": "#/definitions/netdbAddressFamily"
+        },
+        "srcIP": {
+          "type": "string"
+        },
+        "dstIP": {
+          "type": "string"
+        },
+        "proto": {
+          "$ref": "#/definitions/netdbProtocol",
+          "title": "string dstAddr = 22;"
+        },
+        "srcPort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "dstPort": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "netdbConnectionState": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/netdbConnectionStatus"
+        },
+        "firstSeen": {
+          "type": "string",
+          "format": "int64"
+        },
+        "timeout": {
+          "type": "string",
+          "format": "int64"
+        },
+        "originCounter": {
+          "$ref": "#/definitions/netdbTrafficCounter"
+        },
+        "replyCounter": {
+          "$ref": "#/definitions/netdbTrafficCounter"
+        }
+      }
+    },
+    "netdbConnectionStatus": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_STATUS",
+        "NEW",
+        "ACTIVE",
+        "DROPPED"
+      ],
+      "default": "UNKNOWN_STATUS"
+    },
+    "netdbConntrackEntry": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "connection": {
+          "$ref": "#/definitions/netdbConnection"
+        },
+        "state": {
+          "$ref": "#/definitions/netdbConnectionState"
+        }
+      }
+    },
+    "netdbConntrackLogEntry": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "connection": {
+          "$ref": "#/definitions/netdbConnection",
+          "title": "key"
+        },
+        "status": {
+          "$ref": "#/definitions/netdbConnectionStatus",
+          "title": "value"
+        }
+      }
+    },
+    "netdbConntrackLogResponse": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "nodeID": {
+          "type": "string"
+        },
+        "queryID": {
+          "type": "string"
+        },
+        "ctLog": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/netdbConntrackLogEntry"
+          }
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "netdbConntrackTableResponse": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "nodeID": {
+          "type": "string"
+        },
+        "queryID": {
+          "type": "string"
+        },
+        "ctTable": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/netdbConntrackEntry"
+          }
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "netdbProtocol": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_PROTO",
+        "TCP",
+        "UDP",
+        "ICMP4",
+        "ICMP6",
+        "GRE",
+        "SCTP"
+      ],
+      "default": "UNKNOWN_PROTO"
+    },
+    "netdbTalker": {
+      "type": "object",
+      "properties": {
+        "addr": {
+          "type": "string"
+        },
+        "bytes": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "netdbTopTalkers": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/netdbTalker"
+          }
+        },
+        "dst": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/netdbTalker"
+          }
+        }
+      }
+    },
+    "netdbTrafficByAddressFamily": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "traffic": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/netdbTrafficCounter"
+          },
+          "title": "map[AddressFamily]*TrafficCounter"
+        }
+      }
+    },
+    "netdbTrafficByDirection": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "traffic": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/netdbTrafficCounter"
+          },
+          "title": "map[ConnectionDirection]*TrafficCounter"
+        }
+      }
+    },
+    "netdbTrafficByL5Port": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "traffic": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/netdbTrafficCounter"
+          },
+          "title": "map[L5Port]*TrafficCounter"
+        }
+      }
+    },
+    "netdbTrafficByProtocol": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "traffic": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/netdbTrafficCounter"
+          },
+          "title": "map[Prococol]*TrafficCounter"
+        }
+      }
+    },
+    "netdbTrafficCounter": {
+      "type": "object",
+      "properties": {
+        "packets": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "bytes": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "netdbTrafficMetricsResponse": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "nodeID": {
+          "type": "string"
+        },
+        "queryID": {
+          "type": "string"
+        },
+        "byProtocol": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/netdbTrafficByProtocol"
+          }
+        },
+        "byL5Port": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/netdbTrafficByL5Port"
+          }
+        },
+        "byDirection": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/netdbTrafficByDirection"
+          }
+        },
+        "byAddressFamily": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/netdbTrafficByAddressFamily"
+          }
+        },
+        "topTalkers": {
+          "$ref": "#/definitions/netdbTopTalkers"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "netdbTrafficQueryType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_QUERY",
+        "TRAFFIC_BY_PROTOCOL",
+        "TRAFFIC_BY_L5_PORT",
+        "TRAFFIC_BY_DIRECTION",
+        "TRAFFIC_BY_ADDRESS_FAMILY",
+        "TRAFFIC_TOP_TALKERS"
+      ],
+      "default": "UNKNOWN_QUERY"
+    },
+    "nstoreDataRequest": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "nodeID": {
+          "type": "string"
+        },
+        "controllerID": {
+          "type": "string"
+        },
+        "queryID": {
+          "type": "string"
+        }
+      }
+    },
+    "nstoreTimeRange": {
+      "type": "string",
+      "enum": [
+        "TTL_UNDEFINED",
+        "TTL_1H",
+        "TTL_6H",
+        "TTL_12H",
+        "TTL_24H",
+        "TTL_7D",
+        "TTL_14D",
+        "TTL_30D",
+        "TTL_365D"
+      ],
+      "default": "TTL_UNDEFINED",
+      "title": "- TTL_1H: 1H - 60min       / 30 samples - 1 point per 2min\n - TTL_6H: 6H - 360min      / 30 samples - 1 point per 12min\n - TTL_12H: 12H - 720min     / 30 samples - 1 point per 24min\n - TTL_24H: 24H - 1440min    / 30 samples - 1 point per 48min\n - TTL_7D: 7D - 10080min    / 30 samples - 1 point per 336min\n - TTL_14D: 14D - 20160min   / 30 samples - 1 point per 672min\n - TTL_30D: 30D - 40320min   / 30 samples - 1 point per 1344min\n - TTL_365D: 365D - 525600min / 30 samples - 1 point per 12days"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    }
+  }
+}

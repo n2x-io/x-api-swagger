@@ -1,0 +1,1633 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "n2x-iam-api",
+    "version": "1.0",
+    "contact": {
+      "name": "n2x-api",
+      "url": "https://github.com/n2x-io/x-api"
+    },
+    "license": {
+      "name": "Apache-2.0 License",
+      "url": "https://github.com/n2x-io/x-api/blob/master/LICENSE"
+    }
+  },
+  "tags": [
+    {
+      "name": "IAMAPI"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/accounts/{accountID}/iam/acls": {
+      "post": {
+        "summary": "acl",
+        "operationId": "IAMAPI_ListACLs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamACLs"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IAMAPIListACLsBody"
+            }
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/iam/acls/{ACLID}": {
+      "get": {
+        "operationId": "IAMAPI_GetACL",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamACL"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ACLID",
+            "description": "acl (mmIDs group)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tags",
+            "description": "objects (resource tags -VSs, nodes...-): \"p, \u003cacl\u003e, \u003crealm\u003e, \u003ctag\u003e\"",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "users",
+            "description": "subjects (users): \"g, \u003cuser\u003e, \u003cacl\u003e, \u003crealm\u003e\"\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      },
+      "delete": {
+        "operationId": "IAMAPI_DeleteACL",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/emptyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ACLID",
+            "description": "acl (mmIDs group)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tags",
+            "description": "objects (resource tags -VSs, nodes...-): \"p, \u003cacl\u003e, \u003crealm\u003e, \u003ctag\u003e\"",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "users",
+            "description": "subjects (users): \"g, \u003cuser\u003e, \u003cacl\u003e, \u003crealm\u003e\"\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      },
+      "post": {
+        "operationId": "IAMAPI_SetACL",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamACL"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ACLID",
+            "description": "acl (mmIDs group)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IAMAPISetACLBody"
+            }
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/iam/roles": {
+      "post": {
+        "summary": "role",
+        "operationId": "IAMAPI_ListRoles",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamRoles"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IAMAPIListRolesBody"
+            }
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/iam/roles/{roleID}": {
+      "get": {
+        "operationId": "IAMAPI_GetRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamRole"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "roleID",
+            "description": "role (permissions group)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "permissions",
+            "description": "objects (permissions): \"p, \u003crole\u003e, \u003crealm\u003e, \u003cpermission\u003e\"",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "users",
+            "description": "subjects (users): \"g, \u003cuser\u003e, \u003crole\u003e, \u003crealm\u003e\"\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      },
+      "delete": {
+        "operationId": "IAMAPI_DeleteRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/emptyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "roleID",
+            "description": "role (permissions group)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "permissions",
+            "description": "objects (permissions): \"p, \u003crole\u003e, \u003crealm\u003e, \u003cpermission\u003e\"",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "users",
+            "description": "subjects (users): \"g, \u003cuser\u003e, \u003crole\u003e, \u003crealm\u003e\"\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      },
+      "post": {
+        "operationId": "IAMAPI_SetRole",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamRole"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "roleID",
+            "description": "role (permissions group)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IAMAPISetRoleBody"
+            }
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/iam/securityGroups": {
+      "post": {
+        "summary": "security-group",
+        "operationId": "IAMAPI_ListSecurityGroups",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamSecurityGroups"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IAMAPIListSecurityGroupsBody"
+            }
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/iam/securityGroups/{securityGroupID}": {
+      "get": {
+        "operationId": "IAMAPI_GetSecurityGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamSecurityGroup"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "securityGroupID",
+            "description": "security-group (tenants group)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantIDs",
+            "description": "objects (tenantIDs): \"p, \u003csegurity-group\u003e, \u003crealm\u003e, \u003ctenantID\u003e\"",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "users",
+            "description": "subjects (users): \"g, \u003cuser\u003e, \u003csegurity-group\u003e, \u003crealm\u003e\"\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      },
+      "delete": {
+        "operationId": "IAMAPI_DeleteSecurityGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/emptyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "securityGroupID",
+            "description": "security-group (tenants group)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantIDs",
+            "description": "objects (tenantIDs): \"p, \u003csegurity-group\u003e, \u003crealm\u003e, \u003ctenantID\u003e\"",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "users",
+            "description": "subjects (users): \"g, \u003cuser\u003e, \u003csegurity-group\u003e, \u003crealm\u003e\"\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      },
+      "post": {
+        "operationId": "IAMAPI_SetSecurityGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamSecurityGroup"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "securityGroupID",
+            "description": "security-group (tenants group)",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IAMAPISetSecurityGroupBody"
+            }
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/iam/users": {
+      "post": {
+        "operationId": "IAMAPI_ListUsers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamUsers"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IAMAPIListUsersBody"
+            }
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/iam/users/{userID}": {
+      "get": {
+        "operationId": "IAMAPI_GetUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamUser"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userID",
+            "description": "uniqueID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      },
+      "delete": {
+        "operationId": "IAMAPI_DeleteUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/emptyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userID",
+            "description": "uniqueID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/iam/users/{userID}:disable": {
+      "patch": {
+        "operationId": "IAMAPI_DisableUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamUser"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userID",
+            "description": "uniqueID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IAMAPIDisableUserBody"
+            }
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/iam/users/{userID}:enable": {
+      "patch": {
+        "operationId": "IAMAPI_EnableUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamUser"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userID",
+            "description": "uniqueID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IAMAPIEnableUserBody"
+            }
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/iam/users/{userID}:perms": {
+      "patch": {
+        "summary": "rpc SetUserEmail(iam.SetUserEmailRequest) returns (iam.User) {\n    option (google.api.http) = {\n      patch: \"/api/v1/accounts/{accountID}/iam/users/{userID}:email\"\n      body: \"*\"\n    };\n  }",
+        "operationId": "IAMAPI_SetUserPermissions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamUser"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userID",
+            "description": "uniqueID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IAMAPISetUserPermissionsBody"
+            }
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/iam/users/{userID}:token": {
+      "patch": {
+        "operationId": "IAMAPI_NewUserToken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamUser"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userID",
+            "description": "uniqueID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IAMAPINewUserTokenBody"
+            }
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/iam/users:new": {
+      "post": {
+        "summary": "user",
+        "operationId": "IAMAPI_CreateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamUser"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IAMAPICreateUserBody"
+            }
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/iam:rbac": {
+      "get": {
+        "summary": "iam",
+        "operationId": "IAMAPI_GetRBAC",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamRBAC"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "IAMAPI"
+        ]
+      }
+    },
+    "/api/v1/iam:permissions": {
+      "get": {
+        "summary": "permissions",
+        "operationId": "IAMAPI_ListIAMPermissions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/iamPermissions"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "IAMAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "IAMAPICreateUserBody": {
+      "type": "object",
+      "properties": {
+        "locationID": {
+          "type": "string"
+        },
+        "federationID": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "RBAC": {
+          "$ref": "#/definitions/iamUserRBAC"
+        },
+        "type": {
+          "$ref": "#/definitions/iamUserType"
+        }
+      }
+    },
+    "IAMAPIDisableUserBody": {
+      "type": "object"
+    },
+    "IAMAPIEnableUserBody": {
+      "type": "object"
+    },
+    "IAMAPIListACLsBody": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListRequest"
+        }
+      }
+    },
+    "IAMAPIListRolesBody": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListRequest"
+        }
+      }
+    },
+    "IAMAPIListSecurityGroupsBody": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListRequest"
+        }
+      }
+    },
+    "IAMAPIListUsersBody": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListRequest"
+        }
+      }
+    },
+    "IAMAPINewUserTokenBody": {
+      "type": "object"
+    },
+    "IAMAPISetACLBody": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "objects (resource tags -VSs, nodes...-): \"p, \u003cacl\u003e, \u003crealm\u003e, \u003ctag\u003e\""
+        },
+        "users": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "title": "subjects (users): \"g, \u003cuser\u003e, \u003cacl\u003e, \u003crealm\u003e\""
+        }
+      }
+    },
+    "IAMAPISetRoleBody": {
+      "type": "object",
+      "properties": {
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "objects (permissions): \"p, \u003crole\u003e, \u003crealm\u003e, \u003cpermission\u003e\""
+        },
+        "users": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "title": "subjects (users): \"g, \u003cuser\u003e, \u003crole\u003e, \u003crealm\u003e\""
+        }
+      }
+    },
+    "IAMAPISetSecurityGroupBody": {
+      "type": "object",
+      "properties": {
+        "tenantIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "objects (tenantIDs): \"p, \u003csegurity-group\u003e, \u003crealm\u003e, \u003ctenantID\u003e\""
+        },
+        "users": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "title": "subjects (users): \"g, \u003cuser\u003e, \u003csegurity-group\u003e, \u003crealm\u003e\""
+        }
+      }
+    },
+    "IAMAPISetUserPermissionsBody": {
+      "type": "object",
+      "properties": {
+        "RBAC": {
+          "$ref": "#/definitions/iamUserRBAC"
+        }
+      }
+    },
+    "emptyResponse": {
+      "type": "object"
+    },
+    "eventsEventMetrics": {
+      "type": "object",
+      "properties": {
+        "successCount": {
+          "type": "number",
+          "format": "float"
+        },
+        "failCount": {
+          "type": "number",
+          "format": "float"
+        },
+        "successProbability": {
+          "type": "number",
+          "format": "float"
+        },
+        "failProbability": {
+          "type": "number",
+          "format": "float"
+        },
+        "firstActivity": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lastActivity": {
+          "type": "string",
+          "format": "int64"
+        },
+        "activityIndex": {
+          "type": "number",
+          "format": "float"
+        },
+        "score": {
+          "type": "number",
+          "format": "float"
+        },
+        "rating": {
+          "type": "string"
+        },
+        "lastResult": {
+          "$ref": "#/definitions/eventsEventResult"
+        }
+      }
+    },
+    "eventsEventResult": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_RESULT",
+        "SUCCESS",
+        "FAIL"
+      ],
+      "default": "UNKNOWN_RESULT"
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "iamACL": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string",
+          "title": "realm"
+        },
+        "ACLID": {
+          "type": "string",
+          "title": "acl (mmIDs group)"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "objects (resource tags -VSs, nodes...-): \"p, \u003cacl\u003e, \u003crealm\u003e, \u003ctag\u003e\""
+        },
+        "users": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "title": "subjects (users): \"g, \u003cuser\u003e, \u003cacl\u003e, \u003crealm\u003e\""
+        }
+      }
+    },
+    "iamACLs": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListResponse"
+        },
+        "ACLs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/iamACL"
+          }
+        }
+      }
+    },
+    "iamMetric": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "average": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "iamPermissions": {
+      "type": "object",
+      "properties": {
+        "permissions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "iamRBAC": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "stats": {
+          "$ref": "#/definitions/iamStats"
+        },
+        "securityGroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/iamRBACSecurityGroup"
+          }
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/iamRBACRole"
+          }
+        },
+        "ACLs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/iamRBACACL"
+          }
+        }
+      }
+    },
+    "iamRBACACL": {
+      "type": "object",
+      "properties": {
+        "ACLID": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "userIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "iamRBACRole": {
+      "type": "object",
+      "properties": {
+        "roleID": {
+          "type": "string"
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "userIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "iamRBACSecurityGroup": {
+      "type": "object",
+      "properties": {
+        "securityGroupID": {
+          "type": "string"
+        },
+        "tenants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/tenantTenant"
+          }
+        },
+        "userIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "repeated string tenantIDs = 11;"
+        }
+      }
+    },
+    "iamRole": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string",
+          "title": "realm"
+        },
+        "roleID": {
+          "type": "string",
+          "title": "role (permissions group)"
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "objects (permissions): \"p, \u003crole\u003e, \u003crealm\u003e, \u003cpermission\u003e\""
+        },
+        "users": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "title": "subjects (users): \"g, \u003cuser\u003e, \u003crole\u003e, \u003crealm\u003e\""
+        }
+      }
+    },
+    "iamRoles": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListResponse"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/iamRole"
+          }
+        }
+      }
+    },
+    "iamSecurityGroup": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string",
+          "title": "realm"
+        },
+        "securityGroupID": {
+          "type": "string",
+          "title": "security-group (tenants group)"
+        },
+        "tenantIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "objects (tenantIDs): \"p, \u003csegurity-group\u003e, \u003crealm\u003e, \u003ctenantID\u003e\""
+        },
+        "users": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "title": "subjects (users): \"g, \u003cuser\u003e, \u003csegurity-group\u003e, \u003crealm\u003e\""
+        }
+      }
+    },
+    "iamSecurityGroups": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListResponse"
+        },
+        "securityGroups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/iamSecurityGroup"
+          }
+        }
+      }
+    },
+    "iamStats": {
+      "type": "object",
+      "properties": {
+        "totalUsers": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalSecurityGroups": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalRoles": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalACLs": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "iamUser": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string",
+          "title": "realm"
+        },
+        "userID": {
+          "type": "string",
+          "title": "uniqueID"
+        },
+        "email": {
+          "type": "string"
+        },
+        "userToken": {
+          "type": "string",
+          "title": "b64-encoded UserTokenPayload struct"
+        },
+        "status": {
+          "$ref": "#/definitions/iamUserStatus"
+        },
+        "RBAC": {
+          "$ref": "#/definitions/iamUserRBAC"
+        },
+        "stats": {
+          "$ref": "#/definitions/iamUserStats"
+        },
+        "eventMetrics": {
+          "$ref": "#/definitions/eventsEventMetrics"
+        },
+        "type": {
+          "$ref": "#/definitions/iamUserType"
+        }
+      }
+    },
+    "iamUserRBAC": {
+      "type": "object",
+      "properties": {
+        "securityGroups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ACLs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "iamUserStats": {
+      "type": "object",
+      "properties": {
+        "securityIssues": {
+          "$ref": "#/definitions/iamMetric"
+        },
+        "activity": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/iamMetric"
+          },
+          "title": "map[userActivity]*Metric"
+        },
+        "firstSeen": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lastSeen": {
+          "type": "string",
+          "format": "int64"
+        },
+        "timespan": {
+          "type": "string"
+        },
+        "lastActivity": {
+          "type": "string"
+        }
+      }
+    },
+    "iamUserStatus": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "iamUserType": {
+      "type": "string",
+      "enum": [
+        "USER_TYPE_ADM",
+        "USER_TYPE_IAP"
+      ],
+      "default": "USER_TYPE_ADM",
+      "title": "- USER_TYPE_IAP: USER_TYPE_BOTH = 21;"
+    },
+    "iamUsers": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListResponse"
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/iamUser"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "resourceListRequest": {
+      "type": "object",
+      "properties": {
+        "pageToken": {
+          "type": "string"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "resourceListResponse": {
+      "type": "object",
+      "properties": {
+        "nextPageToken": {
+          "type": "string"
+        }
+      }
+    },
+    "tenantTenant": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

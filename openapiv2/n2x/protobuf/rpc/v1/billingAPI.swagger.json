@@ -1,0 +1,321 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "n2x-billing-api",
+    "version": "1.0",
+    "contact": {
+      "name": "n2x-api",
+      "url": "https://github.com/n2x-io/x-api"
+    },
+    "license": {
+      "name": "Apache-2.0 License",
+      "url": "https://github.com/n2x-io/x-api/blob/master/LICENSE"
+    }
+  },
+  "tags": [
+    {
+      "name": "BillingAPI"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/accounts/{accountID}/billing:portal": {
+      "post": {
+        "operationId": "BillingAPI_GetCustomerPortal",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/billingCustomerPortalResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BillingAPIGetCustomerPortalBody"
+            }
+          }
+        ],
+        "tags": [
+          "BillingAPI"
+        ]
+      }
+    },
+    "/api/v1/customers:search": {
+      "post": {
+        "summary": "customer",
+        "operationId": "BillingAPI_SearchCustomer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/emptyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/billingCustomer"
+            }
+          }
+        ],
+        "tags": [
+          "BillingAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "BillingAPIGetCustomerPortalBody": {
+      "type": "object",
+      "properties": {
+        "customerID": {
+          "type": "string"
+        }
+      }
+    },
+    "billingAddress": {
+      "type": "object",
+      "properties": {
+        "line1": {
+          "type": "string"
+        },
+        "line2": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string",
+          "title": "ISO 3166-1 alpha-2 code"
+        }
+      }
+    },
+    "billingCard": {
+      "type": "object",
+      "properties": {
+        "brand": {
+          "type": "string"
+        },
+        "funding": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "last4": {
+          "type": "string"
+        },
+        "expMonth": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "expYear": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cvcCheck": {
+          "type": "string"
+        },
+        "fingerprint": {
+          "type": "string"
+        },
+        "threeDsecure": {
+          "type": "string"
+        }
+      }
+    },
+    "billingCustomer": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "stripeCustomerID": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/billingAddress"
+        },
+        "description": {
+          "type": "string"
+        },
+        "stripeDefaultPaymentMethod": {
+          "$ref": "#/definitions/billingPaymentMethod",
+          "title": "repeated PaymentMethod stripePaymentSources = 31;"
+        },
+        "tax": {
+          "$ref": "#/definitions/billingCustomerTax"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "balance": {
+          "type": "string",
+          "format": "int64"
+        },
+        "delinquent": {
+          "type": "boolean"
+        },
+        "liveMode": {
+          "type": "boolean"
+        },
+        "stripeTestClockID": {
+          "type": "string"
+        },
+        "creationDate": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lastModified": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "billingCustomerPortalResponse": {
+      "type": "object",
+      "properties": {
+        "URL": {
+          "type": "string"
+        }
+      }
+    },
+    "billingCustomerTax": {
+      "type": "object",
+      "properties": {
+        "automaticTax": {
+          "type": "string"
+        },
+        "IPAddress": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/definitions/billingTaxLocation"
+        }
+      }
+    },
+    "billingPaymentMethod": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "usage": {
+          "type": "string"
+        },
+        "card": {
+          "$ref": "#/definitions/billingCard"
+        },
+        "creationDate": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "billingTaxLocation": {
+      "type": "object",
+      "properties": {
+        "Source": {
+          "type": "string",
+          "title": "data source used to infer the customer's location"
+        },
+        "Country": {
+          "type": "string",
+          "title": "customer's country as identified by Stripe Tax"
+        },
+        "State": {
+          "type": "string",
+          "title": "customer's state, county, province, or region as"
+        }
+      }
+    },
+    "emptyResponse": {
+      "type": "object"
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    }
+  }
+}

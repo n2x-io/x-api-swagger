@@ -1,0 +1,1472 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "n2x-ops-api",
+    "version": "1.0",
+    "contact": {
+      "name": "n2x-api",
+      "url": "https://github.com/n2x-io/x-api"
+    },
+    "license": {
+      "name": "Apache-2.0 License",
+      "url": "https://github.com/n2x-io/x-api/blob/master/LICENSE"
+    }
+  },
+  "tags": [
+    {
+      "name": "OpsAPI"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/accounts/{accountID}/tenants/{tenantID}/projects/{projectID}": {
+      "get": {
+        "operationId": "OpsAPI_GetProject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/opsProject"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OpsAPI"
+        ]
+      },
+      "delete": {
+        "operationId": "OpsAPI_DeleteProject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/emptyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OpsAPI"
+        ]
+      },
+      "put": {
+        "operationId": "OpsAPI_SetProject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/opsProject"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OpsAPISetProjectBody"
+            }
+          }
+        ],
+        "tags": [
+          "OpsAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/tenants/{tenantID}/projects/{projectID}/workflows/{workflowID}": {
+      "get": {
+        "operationId": "OpsAPI_GetWorkflow",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/opsWorkflow"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workflowID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OpsAPI"
+        ]
+      },
+      "delete": {
+        "operationId": "OpsAPI_DeleteWorkflow",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/emptyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workflowID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OpsAPI"
+        ]
+      },
+      "put": {
+        "operationId": "OpsAPI_SetWorkflow",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/opsWorkflow"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workflowID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OpsAPISetWorkflowBody"
+            }
+          }
+        ],
+        "tags": [
+          "OpsAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/tenants/{tenantID}/projects/{projectID}/workflows/{workflowID}/tasklogs/{taskLogID}": {
+      "get": {
+        "operationId": "OpsAPI_GetTaskLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/opsTaskLog"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workflowID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "taskLogID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OpsAPI"
+        ]
+      },
+      "delete": {
+        "operationId": "OpsAPI_DeleteTaskLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/emptyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workflowID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "taskLogID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OpsAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/tenants/{tenantID}/projects/{projectID}/workflows:new": {
+      "post": {
+        "summary": "workflows",
+        "operationId": "OpsAPI_CreateWorkflow",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/opsWorkflow"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "projectID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OpsAPICreateWorkflowBody"
+            }
+          }
+        ],
+        "tags": [
+          "OpsAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/tenants/{tenantID}/projects:new": {
+      "post": {
+        "summary": "projects",
+        "operationId": "OpsAPI_CreateProject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/opsProject"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OpsAPICreateProjectBody"
+            }
+          }
+        ],
+        "tags": [
+          "OpsAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{project.accountID}/tenants/{project.tenantID}/projects/{project.projectID}/workflows": {
+      "post": {
+        "operationId": "OpsAPI_ListWorkflows",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/opsWorkflows"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "project.accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "project.tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "project.projectID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OpsAPIListWorkflowsBody"
+            }
+          }
+        ],
+        "tags": [
+          "OpsAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{tenant.accountID}/tenants/{tenant.tenantID}/projects": {
+      "post": {
+        "operationId": "OpsAPI_ListProjects",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/opsProjects"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tenant.accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenant.tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OpsAPIListProjectsBody"
+            }
+          }
+        ],
+        "tags": [
+          "OpsAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{workflow.accountID}/tenants/{workflow.tenantID}/projects/{workflow.projectID}/workflows/{workflow.workflowID}/tasklogs": {
+      "post": {
+        "summary": "taskLogs",
+        "operationId": "OpsAPI_ListTaskLogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/opsTaskLogs"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "workflow.accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workflow.tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workflow.projectID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workflow.workflowID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OpsAPIListTaskLogsBody"
+            }
+          }
+        ],
+        "tags": [
+          "OpsAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "OpsAPICreateProjectBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "reviewRequired": {
+          "type": "boolean"
+        },
+        "approvalRequired": {
+          "type": "boolean"
+        }
+      }
+    },
+    "OpsAPICreateWorkflowBody": {
+      "type": "object",
+      "properties": {
+        "workflowID": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "reviewed": {
+          "type": "boolean"
+        },
+        "reviewers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "[]string{email1, email2..}"
+        },
+        "reviewedBy": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/opsValidation"
+          },
+          "title": "map[email]*Validation"
+        },
+        "approved": {
+          "type": "boolean"
+        },
+        "approvers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "[]string{email1, email2..}"
+        },
+        "approvedBy": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/opsValidation"
+          },
+          "title": "map[email]*Validation"
+        },
+        "triggers": {
+          "$ref": "#/definitions/opsTriggers"
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/opsTask"
+          }
+        },
+        "notify": {
+          "$ref": "#/definitions/opsNotify"
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/topologyNodeReq"
+          }
+        },
+        "taskLogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/opsTaskLog"
+          }
+        },
+        "eventMetrics": {
+          "$ref": "#/definitions/eventsEventMetrics"
+        }
+      }
+    },
+    "OpsAPIListProjectsBody": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListRequest"
+        },
+        "tenant": {
+          "type": "object"
+        }
+      }
+    },
+    "OpsAPIListTaskLogsBody": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListRequest"
+        },
+        "workflow": {
+          "type": "object"
+        }
+      }
+    },
+    "OpsAPIListWorkflowsBody": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListRequest"
+        },
+        "project": {
+          "type": "object"
+        }
+      }
+    },
+    "OpsAPISetProjectBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "reviewRequired": {
+          "type": "boolean"
+        },
+        "approvalRequired": {
+          "type": "boolean"
+        }
+      }
+    },
+    "OpsAPISetWorkflowBody": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "reviewed": {
+          "type": "boolean"
+        },
+        "reviewers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "[]string{email1, email2..}"
+        },
+        "reviewedBy": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/opsValidation"
+          },
+          "title": "map[email]*Validation"
+        },
+        "approved": {
+          "type": "boolean"
+        },
+        "approvers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "[]string{email1, email2..}"
+        },
+        "approvedBy": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/opsValidation"
+          },
+          "title": "map[email]*Validation"
+        },
+        "triggers": {
+          "$ref": "#/definitions/opsTriggers"
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/opsTask"
+          }
+        },
+        "notify": {
+          "$ref": "#/definitions/opsNotify"
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/topologyNodeReq"
+          }
+        },
+        "taskLogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/opsTaskLog"
+          }
+        },
+        "eventMetrics": {
+          "$ref": "#/definitions/eventsEventMetrics"
+        }
+      }
+    },
+    "datetimeDateTime": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "month": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hour": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minute": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "second": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "emptyResponse": {
+      "type": "object"
+    },
+    "eventsEventMetrics": {
+      "type": "object",
+      "properties": {
+        "successCount": {
+          "type": "number",
+          "format": "float"
+        },
+        "failCount": {
+          "type": "number",
+          "format": "float"
+        },
+        "successProbability": {
+          "type": "number",
+          "format": "float"
+        },
+        "failProbability": {
+          "type": "number",
+          "format": "float"
+        },
+        "firstActivity": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lastActivity": {
+          "type": "string",
+          "format": "int64"
+        },
+        "activityIndex": {
+          "type": "number",
+          "format": "float"
+        },
+        "score": {
+          "type": "number",
+          "format": "float"
+        },
+        "rating": {
+          "type": "string"
+        },
+        "lastResult": {
+          "$ref": "#/definitions/eventsEventResult"
+        }
+      }
+    },
+    "eventsEventResult": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_RESULT",
+        "SUCCESS",
+        "FAIL"
+      ],
+      "default": "UNKNOWN_RESULT"
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "opsCommandExec": {
+      "type": "object",
+      "properties": {
+        "cmd": {
+          "type": "string"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "UID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "GID": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "opsCommandResult": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/opsCommandResultStatus",
+          "description": "executed, canceled..."
+        },
+        "duration": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "opsCommandResultStatus": {
+      "type": "string",
+      "enum": [
+        "EXECUTED",
+        "RUNNING",
+        "FAILED"
+      ],
+      "default": "EXECUTED"
+    },
+    "opsEmailNotification": {
+      "type": "object",
+      "properties": {
+        "recipients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/opsPerson"
+          }
+        }
+      }
+    },
+    "opsNotify": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "$ref": "#/definitions/opsEmailNotification"
+        },
+        "slack": {
+          "$ref": "#/definitions/opsSlackNotification"
+        }
+      }
+    },
+    "opsPerson": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "opsProject": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "projectID": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "reviewRequired": {
+          "type": "boolean"
+        },
+        "approvalRequired": {
+          "type": "boolean"
+        }
+      }
+    },
+    "opsProjectReq": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "projectID": {
+          "type": "string"
+        }
+      }
+    },
+    "opsProjects": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListResponse"
+        },
+        "projects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/opsProject"
+          }
+        }
+      }
+    },
+    "opsSchedule": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "dateTime": {
+          "$ref": "#/definitions/datetimeDateTime"
+        },
+        "crontab": {
+          "type": "string"
+        }
+      }
+    },
+    "opsSlackNotification": {
+      "type": "object",
+      "properties": {
+        "recipients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/opsPerson"
+          }
+        }
+      }
+    },
+    "opsTask": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "command": {
+          "$ref": "#/definitions/opsCommandExec"
+        }
+      }
+    },
+    "opsTaskLog": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "projectID": {
+          "type": "string"
+        },
+        "workflowID": {
+          "type": "string"
+        },
+        "taskLogID": {
+          "type": "string"
+        },
+        "taskName": {
+          "type": "string"
+        },
+        "taskDescription": {
+          "type": "string"
+        },
+        "nodeID": {
+          "type": "string",
+          "title": "string netID = 62;\nstring subnetID = 63;"
+        },
+        "nodeName": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/statusStatusResponse"
+        },
+        "result": {
+          "$ref": "#/definitions/opsCommandResult"
+        },
+        "stdoutStderr": {
+          "type": "string",
+          "format": "byte",
+          "title": "combined stdout + stderr"
+        }
+      }
+    },
+    "opsTaskLogs": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListResponse"
+        },
+        "taskLogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/opsTaskLog"
+          }
+        }
+      }
+    },
+    "opsTriggers": {
+      "type": "object",
+      "properties": {
+        "webhook": {
+          "type": "boolean"
+        },
+        "schedule": {
+          "$ref": "#/definitions/opsSchedule"
+        }
+      }
+    },
+    "opsValidation": {
+      "type": "object",
+      "properties": {
+        "responsible": {
+          "$ref": "#/definitions/opsPerson"
+        },
+        "validated": {
+          "type": "boolean"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "opsWorkflow": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "projectID": {
+          "type": "string"
+        },
+        "workflowID": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "reviewed": {
+          "type": "boolean"
+        },
+        "reviewers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "[]string{email1, email2..}"
+        },
+        "reviewedBy": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/opsValidation"
+          },
+          "title": "map[email]*Validation"
+        },
+        "approved": {
+          "type": "boolean"
+        },
+        "approvers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "[]string{email1, email2..}"
+        },
+        "approvedBy": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/opsValidation"
+          },
+          "title": "map[email]*Validation"
+        },
+        "triggers": {
+          "$ref": "#/definitions/opsTriggers"
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/opsTask"
+          }
+        },
+        "notify": {
+          "$ref": "#/definitions/opsNotify"
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/topologyNodeReq"
+          }
+        },
+        "taskLogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/opsTaskLog"
+          }
+        },
+        "eventMetrics": {
+          "$ref": "#/definitions/eventsEventMetrics"
+        }
+      }
+    },
+    "opsWorkflowActionType": {
+      "type": "string",
+      "enum": [
+        "REVIEW",
+        "APPROVE"
+      ],
+      "default": "REVIEW"
+    },
+    "opsWorkflowReq": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "projectID": {
+          "type": "string"
+        },
+        "workflowID": {
+          "type": "string"
+        }
+      }
+    },
+    "opsWorkflows": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListResponse"
+        },
+        "workflows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/opsWorkflow"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "resourceListRequest": {
+      "type": "object",
+      "properties": {
+        "pageToken": {
+          "type": "string"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "resourceListResponse": {
+      "type": "object",
+      "properties": {
+        "nextPageToken": {
+          "type": "string"
+        }
+      }
+    },
+    "statusStatusCode": {
+      "type": "string",
+      "enum": [
+        "UNDEFINED",
+        "OK",
+        "CANCELED",
+        "INTERRUPTED",
+        "INCOMPLETE",
+        "SUSPENDED",
+        "FAILED"
+      ],
+      "default": "UNDEFINED"
+    },
+    "statusStatusResponse": {
+      "type": "object",
+      "properties": {
+        "sourceID": {
+          "type": "string"
+        },
+        "code": {
+          "$ref": "#/definitions/statusStatusCode"
+        },
+        "message": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "tenantTenantReq": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        }
+      }
+    },
+    "topologyNodeReq": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "nodeID": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1837 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "n2x-manager-api",
+    "version": "1.0",
+    "contact": {
+      "name": "n2x-api",
+      "url": "https://github.com/n2x-io/x-api"
+    },
+    "license": {
+      "name": "Apache-2.0 License",
+      "url": "https://github.com/n2x-io/x-api/blob/master/LICENSE"
+    }
+  },
+  "tags": [
+    {
+      "name": "ManagerAPI"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/accounts/{accountID}/iam/users/{userID}:email": {
+      "post": {
+        "summary": "verify user email",
+        "operationId": "ManagerAPI_VerifyUserEmail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authAuthenticationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ManagerAPIVerifyUserEmailBody"
+            }
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      },
+      "patch": {
+        "summary": "set user email",
+        "operationId": "ManagerAPI_SetUserEmail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authOTPSigninResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "description": "realm",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ManagerAPISetUserEmailBody"
+            }
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    },
+    "/api/v1/authenticate:iap": {
+      "post": {
+        "summary": "iapAuthenticate",
+        "operationId": "ManagerAPI_IAPAuthenticate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authAuthenticationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authOTPAuthenticationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    },
+    "/api/v1/authenticate:otp": {
+      "post": {
+        "summary": "otpAuthenticate",
+        "operationId": "ManagerAPI_OTPAuthenticate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authAuthenticationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authOTPAuthenticationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    },
+    "/api/v1/authenticate:session": {
+      "get": {
+        "summary": "sessionAuthenticate",
+        "operationId": "ManagerAPI_SessionAuthenticate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authAuthenticationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    },
+    "/api/v1/locations/{locationID}/federations:select": {
+      "get": {
+        "summary": "controller federation",
+        "operationId": "ManagerAPI_SelectFederation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/controllerFederationSelected"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "locationID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "zone",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "controlZone.active",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "connectivityZone.active",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    },
+    "/api/v1/locations/{locationID}/routers": {
+      "post": {
+        "operationId": "ManagerAPI_ListRouters",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/topologyRouters"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "locationID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ManagerAPIListRoutersBody"
+            }
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    },
+    "/api/v1/locations/{locationID}/routers/{routerID}": {
+      "get": {
+        "operationId": "ManagerAPI_GetRouter",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/topologyRouter"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "locationID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "routerID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      },
+      "delete": {
+        "operationId": "ManagerAPI_DeleteRouter",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/emptyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "locationID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "routerID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    },
+    "/api/v1/locations/{locationID}/routers/{routerID}:webhook": {
+      "post": {
+        "operationId": "ManagerAPI_CreateRouterWebhook",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/topologyRouterInstance"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "locationID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "routerID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ManagerAPICreateRouterWebhookBody"
+            }
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    },
+    "/api/v1/locations/{locationID}/routers:new": {
+      "post": {
+        "operationId": "ManagerAPI_CreateRouter",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/topologyRouterInstance"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "locationID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ManagerAPICreateRouterBody"
+            }
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    },
+    "/api/v1/locations/{routerReq.locationID}/routers/{routerReq.routerID}:cfg": {
+      "post": {
+        "operationId": "ManagerAPI_SetRouterCfg",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/topologyRouter"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "routerReq.locationID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "routerReq.routerID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ManagerAPISetRouterCfgBody"
+            }
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    },
+    "/api/v1/locations:connectivity": {
+      "get": {
+        "operationId": "ManagerAPI_ListConnectivityLocations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/locationLocations"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "meta.pageToken",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "meta.pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    },
+    "/api/v1/locations:control": {
+      "get": {
+        "operationId": "ManagerAPI_ListControlLocations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/locationLocations"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "meta.pageToken",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "meta.pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    },
+    "/api/v1/login": {
+      "post": {
+        "summary": "login",
+        "operationId": "ManagerAPI_Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authAuthenticationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authLoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    },
+    "/api/v1/mail": {
+      "post": {
+        "summary": "mail",
+        "operationId": "ManagerAPI_SendMail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/emptyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/messagingSendMailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    },
+    "/api/v1/signin": {
+      "post": {
+        "summary": "signin",
+        "operationId": "ManagerAPI_Signin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authOTPSigninResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authOTPSigninRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    },
+    "/api/v1/signout": {
+      "post": {
+        "summary": "signout",
+        "operationId": "ManagerAPI_Signout",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authSignoutResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authSignoutRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ManagerAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ManagerAPICreateRouterBody": {
+      "type": "object",
+      "properties": {
+        "routerName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "ManagerAPICreateRouterWebhookBody": {
+      "type": "object"
+    },
+    "ManagerAPIListRoutersBody": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListRequest"
+        }
+      }
+    },
+    "ManagerAPISetRouterCfgBody": {
+      "type": "object",
+      "properties": {
+        "routerReq": {
+          "type": "object"
+        },
+        "cfg": {
+          "$ref": "#/definitions/topologyRouterCfg"
+        }
+      }
+    },
+    "ManagerAPISetUserEmailBody": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      },
+      "title": "user email"
+    },
+    "ManagerAPIVerifyUserEmailBody": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "emailID": {
+          "type": "string",
+          "title": "methodID"
+        },
+        "code": {
+          "type": "string"
+        },
+        "IPAddress": {
+          "type": "string",
+          "description": "optional",
+          "title": "string sessionToken = 51; // existing sessionToken\nstring sessionJWT = 52;   // existing sessionJWT"
+        },
+        "userAgent": {
+          "type": "string",
+          "title": "optional"
+        }
+      }
+    },
+    "authAuthKey": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        }
+      }
+    },
+    "authAuthenticationResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/authAuthenticationResult"
+        },
+        "authKey": {
+          "$ref": "#/definitions/authAuthKey"
+        },
+        "authExpiresAt": {
+          "type": "string",
+          "format": "int64"
+        },
+        "accountID": {
+          "type": "string",
+          "title": "realm"
+        },
+        "locationID": {
+          "type": "string"
+        },
+        "federationID": {
+          "type": "string"
+        },
+        "userID": {
+          "type": "string"
+        },
+        "userType": {
+          "$ref": "#/definitions/iamUserType"
+        },
+        "isAdmin": {
+          "type": "boolean"
+        },
+        "setupRequired": {
+          "type": "boolean"
+        }
+      }
+    },
+    "authAuthenticationResult": {
+      "type": "string",
+      "enum": [
+        "AUTHENTICATION_SUCCESSFUL",
+        "AUTHENTICATION_FAILED",
+        "ACCOUNT_DISABLED",
+        "USER_DISABLED"
+      ],
+      "default": "AUTHENTICATION_SUCCESSFUL"
+    },
+    "authLoginRequest": {
+      "type": "object",
+      "properties": {
+        "userToken": {
+          "type": "string",
+          "title": "b64-encoded UserTokenPayload struct"
+        }
+      }
+    },
+    "authOTPAuthenticationRequest": {
+      "type": "object",
+      "properties": {
+        "methodID": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "sessionToken": {
+          "type": "string",
+          "title": "existing sessionToken"
+        },
+        "IPAddress": {
+          "type": "string",
+          "description": "optional",
+          "title": "string sessionJWT = 22; // existing sessionJWT"
+        },
+        "userAgent": {
+          "type": "string",
+          "title": "optional"
+        }
+      }
+    },
+    "authOTPSigninRequest": {
+      "type": "object",
+      "properties": {
+        "userEmail": {
+          "type": "string"
+        },
+        "method": {
+          "$ref": "#/definitions/authSigninMethod",
+          "title": "string phoneNumber = 11;"
+        },
+        "IPAddress": {
+          "type": "string",
+          "title": "optional"
+        },
+        "userAgent": {
+          "type": "string",
+          "title": "optional"
+        }
+      }
+    },
+    "authOTPSigninResponse": {
+      "type": "object",
+      "properties": {
+        "userID": {
+          "type": "string"
+        },
+        "methodID": {
+          "type": "string"
+        },
+        "userCreated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "authSigninMethod": {
+      "type": "string",
+      "enum": [
+        "SIGNIN_BY_EMAIL",
+        "SIGNIN_BY_SMS",
+        "SIGNIN_BY_WHATSAPP"
+      ],
+      "default": "SIGNIN_BY_EMAIL"
+    },
+    "authSignoutRequest": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "userID": {
+          "type": "string"
+        },
+        "sessionID": {
+          "type": "string",
+          "title": "optional"
+        },
+        "sessionToken": {
+          "type": "string",
+          "title": "optional"
+        }
+      },
+      "title": "signout"
+    },
+    "authSignoutResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/authSignoutResult"
+        }
+      }
+    },
+    "authSignoutResult": {
+      "type": "string",
+      "enum": [
+        "SIGNOUT_SUCCESSFUL",
+        "SIGNOUT_FAILED"
+      ],
+      "default": "SIGNOUT_SUCCESSFUL"
+    },
+    "controllerController": {
+      "type": "object",
+      "properties": {
+        "locationID": {
+          "type": "string"
+        },
+        "federationID": {
+          "type": "string"
+        },
+        "controllerID": {
+          "type": "string",
+          "title": "string federationToken = 3;"
+        },
+        "authKey": {
+          "$ref": "#/definitions/authAuthKey"
+        },
+        "virtualHost": {
+          "type": "string"
+        },
+        "host": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32",
+          "title": "string privateHost = 33;"
+        },
+        "status": {
+          "$ref": "#/definitions/controllerStatus"
+        }
+      }
+    },
+    "controllerControllers": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListResponse"
+        },
+        "controllers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/controllerController"
+          }
+        }
+      }
+    },
+    "controllerFederation": {
+      "type": "object",
+      "properties": {
+        "locationID": {
+          "type": "string"
+        },
+        "federationID": {
+          "type": "string",
+          "title": "string federationToken = 3;"
+        },
+        "controllers": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/controllerController"
+          },
+          "title": "map[controllerID]*Controller"
+        },
+        "usage": {
+          "$ref": "#/definitions/controllerFederationUsage"
+        },
+        "private": {
+          "type": "boolean"
+        },
+        "options": {
+          "$ref": "#/definitions/controllerPrivateFederationOptions"
+        }
+      }
+    },
+    "controllerFederationSelected": {
+      "type": "object",
+      "properties": {
+        "locationID": {
+          "type": "string"
+        },
+        "federationID": {
+          "type": "string"
+        },
+        "virtualHost": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "controllerFederationUsage": {
+      "type": "object",
+      "properties": {
+        "lastUpdated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "accounts": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tenants": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "networks": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "subnets": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nodes": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "endpoints": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "relays": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "controllerFederations": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListResponse"
+        },
+        "federations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/controllerFederation"
+          }
+        }
+      }
+    },
+    "controllerPrivateFederationOptions": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string",
+          "title": "for account-dedicated private federations (private == true)"
+        }
+      }
+    },
+    "controllerStatus": {
+      "type": "object",
+      "properties": {
+        "lastUpdated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "connections": {
+          "type": "integer",
+          "format": "int32",
+          "title": "int32 connectedUsers = 3;"
+        }
+      }
+    },
+    "emptyResponse": {
+      "type": "object"
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "iamUserType": {
+      "type": "string",
+      "enum": [
+        "USER_TYPE_ADM",
+        "USER_TYPE_IAP"
+      ],
+      "default": "USER_TYPE_ADM",
+      "title": "- USER_TYPE_IAP: USER_TYPE_BOTH = 21;"
+    },
+    "locationFeatureZone": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        }
+      }
+    },
+    "locationLocation": {
+      "type": "object",
+      "properties": {
+        "locationID": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "zone": {
+          "type": "string"
+        },
+        "controlZone": {
+          "$ref": "#/definitions/locationFeatureZone",
+          "title": "controllers available"
+        },
+        "connectivityZone": {
+          "$ref": "#/definitions/locationFeatureZone",
+          "title": "routers available"
+        }
+      }
+    },
+    "locationLocations": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListResponse"
+        },
+        "locations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/locationLocation"
+          }
+        }
+      }
+    },
+    "messagingMailTemplate": {
+      "type": "string",
+      "enum": [
+        "UNDEFINED",
+        "ACCOUNT_CONFIRMATION",
+        "EMAIL_CONFIRMATION",
+        "PASSWORD_RESET",
+        "MAGIC_LOGIN_LINK"
+      ],
+      "default": "UNDEFINED"
+    },
+    "messagingSendMailRequest": {
+      "type": "object",
+      "properties": {
+        "rcptEmail": {
+          "type": "string"
+        },
+        "mailTemplate": {
+          "$ref": "#/definitions/messagingMailTemplate"
+        },
+        "link": {
+          "type": "string"
+        }
+      }
+    },
+    "nacNATProbe": {
+      "type": "object",
+      "properties": {
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "externalIPv4": {
+          "type": "string"
+        }
+      }
+    },
+    "nacRouterAdmissionResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/nacRouterAdmissionResult"
+        },
+        "authKey": {
+          "$ref": "#/definitions/authAuthKey"
+        },
+        "router": {
+          "$ref": "#/definitions/topologyRouter",
+          "title": "string authSecret = 12;"
+        }
+      }
+    },
+    "nacRouterAdmissionResult": {
+      "type": "string",
+      "enum": [
+        "ROUTER_UNAUTHORIZED",
+        "ROUTER_AUTHORIZED"
+      ],
+      "default": "ROUTER_UNAUTHORIZED"
+    },
+    "nacRouterRegResponse": {
+      "type": "object",
+      "properties": {
+        "locationID": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "resourceListRequest": {
+      "type": "object",
+      "properties": {
+        "pageToken": {
+          "type": "string"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "resourceListResponse": {
+      "type": "object",
+      "properties": {
+        "nextPageToken": {
+          "type": "string"
+        }
+      }
+    },
+    "routingAppSvcLSA": {
+      "type": "object",
+      "properties": {
+        "appSvc": {
+          "$ref": "#/definitions/topologyAppSvc"
+        },
+        "P2PHostID": {
+          "type": "string",
+          "title": "repeated string MAddrs = 52;"
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "IPv6": {
+          "type": "string"
+        },
+        "connections": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "routingIPAddr": {
+      "type": "object",
+      "properties": {
+        "IPv4": {
+          "type": "string"
+        },
+        "IPv6": {
+          "type": "string"
+        }
+      }
+    },
+    "routingLSAType": {
+      "type": "string",
+      "enum": [
+        "UNDEFINED_LSA",
+        "NODE_LSA",
+        "ROUTING_SCOPE_LSA",
+        "NETWORK_POLICY_LSA",
+        "ROUTER_LSA",
+        "PROXY_LSA",
+        "APPSVC_LSA"
+      ],
+      "default": "UNDEFINED_LSA"
+    },
+    "routingNetworkPolicyLSA": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "netID": {
+          "type": "string"
+        },
+        "subnetID": {
+          "type": "string"
+        },
+        "policy": {
+          "$ref": "#/definitions/topologyPolicy"
+        }
+      }
+    },
+    "routingNodeLSA": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "netID": {
+          "type": "string"
+        },
+        "subnetID": {
+          "type": "string"
+        },
+        "nodeID": {
+          "type": "string"
+        },
+        "networkCIDR": {
+          "type": "string"
+        },
+        "subnetCIDR": {
+          "type": "string"
+        },
+        "P2PHostID": {
+          "type": "string"
+        },
+        "MAddrs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "externalIPv4": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isRelay": {
+          "type": "boolean"
+        },
+        "endpoints": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/routingIPAddr"
+          },
+          "title": "map[dnsName]*IPAddr"
+        },
+        "exportedRoutes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "connections": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "NodeLSA is received by controllers from nodes via grpc"
+    },
+    "routingProxyLSA": {
+      "type": "object",
+      "properties": {
+        "locationID": {
+          "type": "string"
+        },
+        "proxyName": {
+          "type": "string",
+          "title": "string proxyID = 5;"
+        },
+        "P2PHostID": {
+          "type": "string",
+          "title": "repeated string MAddrs = 22;"
+        },
+        "externalIPv4": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "IPv6": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "connections": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "routingRouterLSA": {
+      "type": "object",
+      "properties": {
+        "locationID": {
+          "type": "string"
+        },
+        "routerID": {
+          "type": "string"
+        },
+        "P2PHostID": {
+          "type": "string",
+          "title": "repeated string MAddrs = 22;"
+        },
+        "externalIPv4": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "connections": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "routingRoutingScopeLSA": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "netID": {
+          "type": "string"
+        },
+        "routedSubnets": {
+          "type": "boolean",
+          "title": "connect subnets within the network"
+        }
+      }
+    },
+    "routingStatus": {
+      "type": "object",
+      "properties": {
+        "disabled": {
+          "type": "boolean"
+        },
+        "deleted": {
+          "type": "boolean",
+          "title": "bool overLimit = 31;"
+        }
+      },
+      "title": "Status is received by routers/nodes by grpc"
+    },
+    "topologyAppSvc": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "VSID": {
+          "type": "string"
+        },
+        "appSvcID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "netID": {
+          "type": "string"
+        },
+        "subnetID": {
+          "type": "string"
+        },
+        "nodeID": {
+          "type": "string"
+        },
+        "nodeName": {
+          "type": "string",
+          "title": "string nodeDescription = 53;"
+        },
+        "locationID": {
+          "type": "string",
+          "title": "inherited from VS"
+        },
+        "cname": {
+          "type": "string",
+          "title": "inherited from VS"
+        },
+        "reqAuth": {
+          "type": "boolean",
+          "title": "inherited from VS"
+        },
+        "proto": {
+          "$ref": "#/definitions/topologyVSProto"
+        },
+        "VSPort": {
+          "type": "integer",
+          "format": "int32",
+          "title": "inherited from VS"
+        },
+        "RSPort": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "topologyFilter": {
+      "type": "object",
+      "properties": {
+        "nfID": {
+          "type": "string"
+        },
+        "index": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "description": {
+          "type": "string"
+        },
+        "srcIPNet": {
+          "type": "string"
+        },
+        "dstIPNet": {
+          "type": "string",
+          "title": "usually, the endpoint addr"
+        },
+        "proto": {
+          "$ref": "#/definitions/topologyProtocol"
+        },
+        "dstPort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "policy": {
+          "$ref": "#/definitions/topologySecurityPolicy",
+          "title": "ACCEPT, DROP"
+        }
+      }
+    },
+    "topologyNodeInstanceConfig": {
+      "type": "object",
+      "properties": {
+        "YAML": {
+          "type": "string"
+        }
+      }
+    },
+    "topologyPolicy": {
+      "type": "object",
+      "properties": {
+        "defaultPolicy": {
+          "$ref": "#/definitions/topologySecurityPolicy",
+          "title": "ACCEPT, DROP"
+        },
+        "networkFilters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/topologyFilter"
+          },
+          "title": "map\u003cstring, Filter\u003e networkFilters = 11;  // map[nfID]*NetworkFilter"
+        },
+        "lastModified": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "topologyProtocol": {
+      "type": "string",
+      "enum": [
+        "ANY",
+        "TCP",
+        "UDP",
+        "ICMPv4",
+        "ICMPv6"
+      ],
+      "default": "ANY"
+    },
+    "topologyRouter": {
+      "type": "object",
+      "properties": {
+        "locationID": {
+          "type": "string"
+        },
+        "routerID": {
+          "type": "string"
+        },
+        "routerToken": {
+          "type": "string",
+          "title": "b64-encoded RouterTokenPayload struct"
+        },
+        "cfg": {
+          "$ref": "#/definitions/topologyRouterCfg"
+        },
+        "agent": {
+          "$ref": "#/definitions/topologyRouterAgent"
+        },
+        "lastSeen": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "topologyRouterAgent": {
+      "type": "object",
+      "properties": {
+        "P2PHostID": {
+          "type": "string"
+        },
+        "hostname": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32",
+          "title": "string transport = 12;"
+        },
+        "externalIPv4": {
+          "type": "string"
+        },
+        "MAddrs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "devMode": {
+          "type": "boolean"
+        }
+      }
+    },
+    "topologyRouterCfg": {
+      "type": "object",
+      "properties": {
+        "routerName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "topologyRouterInstance": {
+      "type": "object",
+      "properties": {
+        "router": {
+          "$ref": "#/definitions/topologyRouter"
+        },
+        "config": {
+          "$ref": "#/definitions/topologyNodeInstanceConfig",
+          "title": "CloudOpts cloudOpts = 62;"
+        }
+      }
+    },
+    "topologyRouterReq": {
+      "type": "object",
+      "properties": {
+        "locationID": {
+          "type": "string"
+        },
+        "routerID": {
+          "type": "string"
+        }
+      }
+    },
+    "topologyRouters": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListResponse"
+        },
+        "routers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/topologyRouter"
+          }
+        }
+      }
+    },
+    "topologySecurityPolicy": {
+      "type": "string",
+      "enum": [
+        "ACCEPT",
+        "DROP"
+      ],
+      "default": "ACCEPT"
+    },
+    "topologyVSProto": {
+      "type": "string",
+      "enum": [
+        "PROTO_UNSPECIFIED",
+        "PROTO_TCP_GENERIC",
+        "PROTO_TCP_HTTP",
+        "PROTO_TCP_HTTPS",
+        "PROTO_TCP_SSH",
+        "PROTO_UDP_GENERIC"
+      ],
+      "default": "PROTO_UNSPECIFIED"
+    },
+    "webhookWebhook": {
+      "type": "object",
+      "properties": {
+        "webhookID": {
+          "type": "string",
+          "title": "string accountID = 2;\n string locationID = 3;\n string federationID = 4;"
+        },
+        "callbackToken": {
+          "type": "string",
+          "description": "according to type: accountToken, userToken, wfToken..."
+        },
+        "type": {
+          "$ref": "#/definitions/webhookWebhookType"
+        },
+        "action": {
+          "$ref": "#/definitions/webhookWebhookAction"
+        },
+        "payload": {
+          "type": "string",
+          "format": "byte",
+          "title": "store for binary data (install scripts for nodes...)"
+        },
+        "email": {
+          "type": "string",
+          "title": "destination email and action responsible"
+        },
+        "expiration": {
+          "type": "string",
+          "format": "int64"
+        },
+        "used": {
+          "type": "boolean"
+        }
+      }
+    },
+    "webhookWebhookAction": {
+      "type": "string",
+      "enum": [
+        "WEBHOOK_ACTION_UNDEFINED",
+        "WEBHOOK_ACTION_WORKFLOW_REVIEWED_TRUE",
+        "WEBHOOK_ACTION_WORKFLOW_REVIEWED_FALSE",
+        "WEBHOOK_ACTION_WORKFLOW_APPROVED_TRUE",
+        "WEBHOOK_ACTION_WORKFLOW_APPROVED_FALSE",
+        "WEBHOOK_ACTION_ERROR_EXPIRED_WEBHOOK",
+        "WEBHOOK_ACTION_ERROR_BAD_REQUEST",
+        "WEBHOOK_ACTION_ERROR_INTERNAL_ERROR"
+      ],
+      "default": "WEBHOOK_ACTION_UNDEFINED"
+    },
+    "webhookWebhookType": {
+      "type": "string",
+      "enum": [
+        "WEBHOOK_TYPE_UNDEFINED",
+        "WEBHOOK_TYPE_WORKFLOW"
+      ],
+      "default": "WEBHOOK_TYPE_UNDEFINED",
+      "description": "WEBHOOK_TYPE_NODE_INSTANCE = 41;",
+      "title": "- WEBHOOK_TYPE_WORKFLOW: WEBHOOK_TYPE_ACCOUNT = 11;\nWEBHOOK_TYPE_USER = 21;"
+    },
+    "webhookWebhooks": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListResponse"
+        },
+        "webhooks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/webhookWebhook"
+          }
+        }
+      }
+    }
+  }
+}

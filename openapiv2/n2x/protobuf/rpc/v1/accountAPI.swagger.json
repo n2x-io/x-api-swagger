@@ -1,0 +1,1073 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "n2x-account-api",
+    "version": "1.0",
+    "contact": {
+      "name": "n2x-api",
+      "url": "https://github.com/n2x-io/x-api"
+    },
+    "license": {
+      "name": "Apache-2.0 License",
+      "url": "https://github.com/n2x-io/x-api/blob/master/LICENSE"
+    }
+  },
+  "tags": [
+    {
+      "name": "AccountAPI"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/accounts": {
+      "post": {
+        "summary": "Creates a new account.",
+        "operationId": "AccountAPI_NewAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/accountNewAccountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/accountNewAccountRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AccountAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}": {
+      "get": {
+        "summary": "Gets an account.",
+        "operationId": "AccountAPI_GetAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/accountAccount"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AccountAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}:cancel": {
+      "patch": {
+        "summary": "Cancels an account.",
+        "operationId": "AccountAPI_CancelAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/emptyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AccountAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}:integrations": {
+      "put": {
+        "summary": "Updates account integrations.",
+        "operationId": "AccountAPI_SetAccountIntegrations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/accountAccount"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountAPISetAccountIntegrationsBody"
+            }
+          }
+        ],
+        "tags": [
+          "AccountAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}:metadata": {
+      "put": {
+        "summary": "Updates account metadata.",
+        "operationId": "AccountAPI_SetAccountMetadata",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/accountAccount"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountAPISetAccountMetadataBody"
+            }
+          }
+        ],
+        "tags": [
+          "AccountAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AccountAPISetAccountIntegrationsBody": {
+      "type": "object",
+      "properties": {
+        "integrations": {
+          "$ref": "#/definitions/thirdPartyIntegrations"
+        }
+      }
+    },
+    "AccountAPISetAccountMetadataBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        }
+      }
+    },
+    "accountAccount": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "locationID": {
+          "type": "string"
+        },
+        "federationID": {
+          "type": "string"
+        },
+        "creationDate": {
+          "type": "string",
+          "format": "int64"
+        },
+        "owner": {
+          "$ref": "#/definitions/accountOwner"
+        },
+        "type": {
+          "$ref": "#/definitions/accountAccountType"
+        },
+        "status": {
+          "$ref": "#/definitions/accountStatus"
+        },
+        "service": {
+          "$ref": "#/definitions/accountService"
+        },
+        "integrations": {
+          "$ref": "#/definitions/thirdPartyIntegrations"
+        },
+        "usage": {
+          "$ref": "#/definitions/accountUsage",
+          "title": "map\u003cstring, Usage\u003e usage = 41;      // map[federationID]*Usage"
+        },
+        "dataSourceInstanceID": {
+          "type": "string"
+        }
+      }
+    },
+    "accountAccountType": {
+      "type": "string",
+      "enum": [
+        "NORMAL"
+      ],
+      "default": "NORMAL"
+    },
+    "accountAccounts": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListResponse"
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/accountAccount"
+          }
+        }
+      }
+    },
+    "accountNewAccountRequest": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "locationID": {
+          "type": "string"
+        },
+        "federationID": {
+          "type": "string"
+        },
+        "adminUserID": {
+          "type": "string",
+          "title": "uniqueID"
+        },
+        "ownerEmail": {
+          "type": "string"
+        },
+        "ownerName": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/billingAddress"
+        },
+        "defaultNetworkLocationID": {
+          "type": "string"
+        },
+        "defaultNetworkCIDR": {
+          "type": "string"
+        },
+        "defaultSubnetCIDR": {
+          "type": "string"
+        },
+        "dataSourceInstanceID": {
+          "type": "string"
+        }
+      }
+    },
+    "accountNewAccountResponse": {
+      "type": "object",
+      "properties": {
+        "locationID": {
+          "type": "string"
+        },
+        "federationID": {
+          "type": "string"
+        },
+        "accountID": {
+          "type": "string",
+          "title": "uuid"
+        },
+        "adminUserToken": {
+          "type": "string",
+          "title": "b64-encoded UserTokenPayload struct"
+        }
+      }
+    },
+    "accountOwner": {
+      "type": "object",
+      "properties": {
+        "admin": {
+          "$ref": "#/definitions/iamUser"
+        },
+        "customer": {
+          "$ref": "#/definitions/billingCustomer"
+        }
+      }
+    },
+    "accountService": {
+      "type": "object",
+      "properties": {
+        "subscriptions": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/billingSubscription"
+          },
+          "description": "billing.Subscription subscription = 1;\nserviceID ::= \"standard\" | \"serverless\" | \"enterprise\" | \"support\" |\n\"other\"  | ...\n\nmap[serviceID]*Subscription"
+        },
+        "suspended": {
+          "type": "boolean",
+          "title": "bool isServiceProvider = 11;"
+        },
+        "canceled": {
+          "type": "boolean"
+        },
+        "cancelationDate": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "accountStatus": {
+      "type": "object",
+      "properties": {
+        "confirmed": {
+          "type": "boolean"
+        },
+        "enabled": {
+          "type": "boolean",
+          "title": "bool canceled = 11; // account DELETED by account owner"
+        }
+      }
+    },
+    "accountUsage": {
+      "type": "object",
+      "properties": {
+        "lastUpdated": {
+          "type": "string",
+          "format": "int64"
+        },
+        "tenants": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "networks": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "subnets": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nodes": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "endpoints": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "relays": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "VSs": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "appSvcs": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "users": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "securityGroups": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "roles": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ACLs": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "admUsers": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "IAPUsers": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "projects": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "workflows": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "service items usage"
+    },
+    "billingAddress": {
+      "type": "object",
+      "properties": {
+        "line1": {
+          "type": "string"
+        },
+        "line2": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string",
+          "title": "ISO 3166-1 alpha-2 code"
+        }
+      }
+    },
+    "billingCard": {
+      "type": "object",
+      "properties": {
+        "brand": {
+          "type": "string"
+        },
+        "funding": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "last4": {
+          "type": "string"
+        },
+        "expMonth": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "expYear": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cvcCheck": {
+          "type": "string"
+        },
+        "fingerprint": {
+          "type": "string"
+        },
+        "threeDsecure": {
+          "type": "string"
+        }
+      }
+    },
+    "billingCustomer": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "stripeCustomerID": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/billingAddress"
+        },
+        "description": {
+          "type": "string"
+        },
+        "stripeDefaultPaymentMethod": {
+          "$ref": "#/definitions/billingPaymentMethod",
+          "title": "repeated PaymentMethod stripePaymentSources = 31;"
+        },
+        "tax": {
+          "$ref": "#/definitions/billingCustomerTax"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "balance": {
+          "type": "string",
+          "format": "int64"
+        },
+        "delinquent": {
+          "type": "boolean"
+        },
+        "liveMode": {
+          "type": "boolean"
+        },
+        "stripeTestClockID": {
+          "type": "string"
+        },
+        "creationDate": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lastModified": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "billingCustomerTax": {
+      "type": "object",
+      "properties": {
+        "automaticTax": {
+          "type": "string"
+        },
+        "IPAddress": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/definitions/billingTaxLocation"
+        }
+      }
+    },
+    "billingDiscount": {
+      "type": "object",
+      "properties": {
+        "stripeCouponID": {
+          "type": "string"
+        },
+        "percentOff": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "start": {
+          "type": "string",
+          "format": "int64"
+        },
+        "end": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "billingPaymentMethod": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "usage": {
+          "type": "string"
+        },
+        "card": {
+          "$ref": "#/definitions/billingCard"
+        },
+        "creationDate": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "billingSubscription": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string",
+          "title": "string subscriptionID = 2; // serviceID-pricingPlanID"
+        },
+        "serviceID": {
+          "type": "string"
+        },
+        "serviceProviderID": {
+          "type": "string",
+          "description": "string providerID = 5;\n string productID = 6; // naming convention:\n providerPrefix_providerProductName string priceID = 7;   // naming\n convention: providerPrefix_providerPriceName",
+          "title": "string pricingPlanID = 4;"
+        },
+        "stripeCustomerID": {
+          "type": "string"
+        },
+        "stripeCustomerEmail": {
+          "type": "string"
+        },
+        "stripeSubscriptionID": {
+          "type": "string",
+          "title": "string stripeProductID = 12;\nstring stripePriceID = 13;"
+        },
+        "defaultStripePaymentMethodID": {
+          "type": "string"
+        },
+        "automaticTax": {
+          "type": "boolean"
+        },
+        "discount": {
+          "$ref": "#/definitions/billingDiscount"
+        },
+        "creationDate": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lastModified": {
+          "type": "string",
+          "format": "int64"
+        },
+        "startDate": {
+          "type": "string",
+          "format": "int64"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "int64"
+        },
+        "trialStartDate": {
+          "type": "string",
+          "format": "int64"
+        },
+        "trialEndDate": {
+          "type": "string",
+          "format": "int64"
+        },
+        "cancelAtPeriodEnd": {
+          "type": "boolean"
+        },
+        "cancelationDate": {
+          "type": "string",
+          "format": "int64"
+        },
+        "currentPeriodStart": {
+          "type": "string",
+          "format": "int64"
+        },
+        "currentPeriodEnd": {
+          "type": "string",
+          "format": "int64"
+        },
+        "latestStripeInvoiceID": {
+          "type": "string"
+        },
+        "latestStripeHostedInvoiceURL": {
+          "type": "string"
+        },
+        "latestStripeInvoicePaymentIntentStatus": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/billingSubscriptionStatus"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/billingSubscriptionItem"
+          }
+        }
+      }
+    },
+    "billingSubscriptionItem": {
+      "type": "object",
+      "properties": {
+        "itemID": {
+          "type": "string"
+        },
+        "priceID": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "billingSubscriptionStatus": {
+      "type": "string",
+      "enum": [
+        "TRIALING",
+        "ACTIVE",
+        "INCOMPLETE",
+        "INCOMPLETE_EXPIRED",
+        "PAST_DUE",
+        "CANCELED",
+        "UNPAID",
+        "UNKNOWN",
+        "NONE"
+      ],
+      "default": "TRIALING"
+    },
+    "billingTaxLocation": {
+      "type": "object",
+      "properties": {
+        "Source": {
+          "type": "string",
+          "title": "data source used to infer the customer's location"
+        },
+        "Country": {
+          "type": "string",
+          "title": "customer's country as identified by Stripe Tax"
+        },
+        "State": {
+          "type": "string",
+          "title": "customer's state, county, province, or region as"
+        }
+      }
+    },
+    "emptyResponse": {
+      "type": "object"
+    },
+    "eventsEventMetrics": {
+      "type": "object",
+      "properties": {
+        "successCount": {
+          "type": "number",
+          "format": "float"
+        },
+        "failCount": {
+          "type": "number",
+          "format": "float"
+        },
+        "successProbability": {
+          "type": "number",
+          "format": "float"
+        },
+        "failProbability": {
+          "type": "number",
+          "format": "float"
+        },
+        "firstActivity": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lastActivity": {
+          "type": "string",
+          "format": "int64"
+        },
+        "activityIndex": {
+          "type": "number",
+          "format": "float"
+        },
+        "score": {
+          "type": "number",
+          "format": "float"
+        },
+        "rating": {
+          "type": "string"
+        },
+        "lastResult": {
+          "$ref": "#/definitions/eventsEventResult"
+        }
+      }
+    },
+    "eventsEventResult": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_RESULT",
+        "SUCCESS",
+        "FAIL"
+      ],
+      "default": "UNKNOWN_RESULT"
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "iamMetric": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "average": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "iamUser": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string",
+          "title": "realm"
+        },
+        "userID": {
+          "type": "string",
+          "title": "uniqueID"
+        },
+        "email": {
+          "type": "string"
+        },
+        "userToken": {
+          "type": "string",
+          "title": "b64-encoded UserTokenPayload struct"
+        },
+        "status": {
+          "$ref": "#/definitions/iamUserStatus"
+        },
+        "RBAC": {
+          "$ref": "#/definitions/iamUserRBAC"
+        },
+        "stats": {
+          "$ref": "#/definitions/iamUserStats"
+        },
+        "eventMetrics": {
+          "$ref": "#/definitions/eventsEventMetrics"
+        },
+        "type": {
+          "$ref": "#/definitions/iamUserType"
+        }
+      }
+    },
+    "iamUserRBAC": {
+      "type": "object",
+      "properties": {
+        "securityGroups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ACLs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "iamUserStats": {
+      "type": "object",
+      "properties": {
+        "securityIssues": {
+          "$ref": "#/definitions/iamMetric"
+        },
+        "activity": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/iamMetric"
+          },
+          "title": "map[userActivity]*Metric"
+        },
+        "firstSeen": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lastSeen": {
+          "type": "string",
+          "format": "int64"
+        },
+        "timespan": {
+          "type": "string"
+        },
+        "lastActivity": {
+          "type": "string"
+        }
+      }
+    },
+    "iamUserStatus": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "iamUserType": {
+      "type": "string",
+      "enum": [
+        "USER_TYPE_ADM",
+        "USER_TYPE_IAP"
+      ],
+      "default": "USER_TYPE_ADM",
+      "title": "- USER_TYPE_IAP: USER_TYPE_BOTH = 21;"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "resourceListRequest": {
+      "type": "object",
+      "properties": {
+        "pageToken": {
+          "type": "string"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "resourceListResponse": {
+      "type": "object",
+      "properties": {
+        "nextPageToken": {
+          "type": "string"
+        }
+      }
+    },
+    "thirdPartyGitHub": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "accessToken": {
+          "type": "string"
+        },
+        "webhooksSecret": {
+          "type": "string"
+        }
+      }
+    },
+    "thirdPartyIntegrations": {
+      "type": "object",
+      "properties": {
+        "github": {
+          "$ref": "#/definitions/thirdPartyGitHub"
+        },
+        "pagerduty": {
+          "$ref": "#/definitions/thirdPartyPagerDuty"
+        },
+        "slack": {
+          "$ref": "#/definitions/thirdPartySlack",
+          "title": "ClickUp clickup = 31;\n Discord discord = 51;"
+        },
+        "unmasked": {
+          "type": "boolean"
+        }
+      }
+    },
+    "thirdPartyPagerDuty": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "integrationKey": {
+          "type": "string"
+        }
+      }
+    },
+    "thirdPartySlack": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "alertsWebhook": {
+          "type": "string"
+        },
+        "opsWebhook": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

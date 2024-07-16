@@ -1,0 +1,502 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "n2x-monitoring-api",
+    "version": "1.0",
+    "contact": {
+      "name": "n2x-api",
+      "url": "https://github.com/n2x-io/x-api"
+    },
+    "license": {
+      "name": "Apache-2.0 License",
+      "url": "https://github.com/n2x-io/x-api/blob/master/LICENSE"
+    }
+  },
+  "tags": [
+    {
+      "name": "MonitoringAPI"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/accounts/{accountID}/tenants/{tenantID}/alerts/{alertID}": {
+      "get": {
+        "operationId": "MonitoringAPI_GetAlert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eventsAlert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "alertID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "nodeID",
+            "description": "string netID = 12;\nstring SubnetID = 13;",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MonitoringAPI"
+        ]
+      },
+      "delete": {
+        "operationId": "MonitoringAPI_DeleteAlert",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/emptyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "alertID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "nodeID",
+            "description": "string netID = 12;\nstring SubnetID = 13;",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MonitoringAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/tenants/{tenantID}/alerts/{alertID}:comment": {
+      "post": {
+        "summary": "rpc SetAlert (events.Alert) returns (events.Alert) {}",
+        "operationId": "MonitoringAPI_NewAlertComment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eventsAlert"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "alertID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MonitoringAPINewAlertCommentBody"
+            }
+          }
+        ],
+        "tags": [
+          "MonitoringAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{accountID}/tenants/{tenantID}:alerts": {
+      "get": {
+        "summary": "alertList",
+        "operationId": "MonitoringAPI_GetAlertList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eventsAlertList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MonitoringAPI"
+        ]
+      }
+    },
+    "/api/v1/accounts/{tenant.accountID}/tenants/{tenant.tenantID}/alerts": {
+      "post": {
+        "summary": "alerts",
+        "operationId": "MonitoringAPI_ListAlerts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eventsAlerts"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tenant.accountID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenant.tenantID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MonitoringAPIListAlertsBody"
+            }
+          }
+        ],
+        "tags": [
+          "MonitoringAPI"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "MonitoringAPIListAlertsBody": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListRequest"
+        },
+        "tenant": {
+          "type": "object"
+        }
+      }
+    },
+    "MonitoringAPINewAlertCommentBody": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "$ref": "#/definitions/eventsAlertComment"
+        }
+      }
+    },
+    "emptyResponse": {
+      "type": "object"
+    },
+    "eventsAlert": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        },
+        "alertID": {
+          "type": "string",
+          "title": "== eventID"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "nodeID": {
+          "type": "string",
+          "title": "string netID = 22;\nstring subnetID = 23;"
+        },
+        "nodeName": {
+          "type": "string"
+        },
+        "class": {
+          "$ref": "#/definitions/eventsClass"
+        },
+        "group": {
+          "$ref": "#/definitions/eventsGroup"
+        },
+        "component": {
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/definitions/eventsSeverity"
+        },
+        "status": {
+          "$ref": "#/definitions/eventsStatus"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "customDetails": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eventsAlertComment"
+          },
+          "title": "map\u003cint64, AlertComment\u003e comments = 201;  // map[timestamp]*AlertComment"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "eventsAlertComment": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "userID": {
+          "type": "string"
+        },
+        "userEmail": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "eventsAlertList": {
+      "type": "object",
+      "properties": {
+        "alerts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eventsAlert"
+          }
+        }
+      }
+    },
+    "eventsAlerts": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/resourceListResponse"
+        },
+        "alerts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eventsAlert"
+          }
+        }
+      }
+    },
+    "eventsClass": {
+      "type": "string",
+      "enum": [
+        "UNDEFINED_CLASS",
+        "BILLING",
+        "DATABASE",
+        "NETWORK",
+        "SECURITY",
+        "CONFIGURATION",
+        "HOST",
+        "WORKFLOW",
+        "KUBERNETES",
+        "USER_ACTIVITY",
+        "EXTERNAL"
+      ],
+      "default": "UNDEFINED_CLASS"
+    },
+    "eventsGroup": {
+      "type": "string",
+      "enum": [
+        "UNDEFINED_GROUP",
+        "ROUTING",
+        "IAM",
+        "HOST_METRICS",
+        "WORKFLOW_TASK",
+        "WEBHOOK",
+        "THIRD_PARTY_INTEGRATION"
+      ],
+      "default": "UNDEFINED_GROUP",
+      "description": " - IAM: user auth, rbac..."
+    },
+    "eventsSeverity": {
+      "type": "string",
+      "enum": [
+        "UNDEFINED_SEVERITY",
+        "INFO",
+        "WARNING",
+        "ERROR",
+        "CRITICAL"
+      ],
+      "default": "UNDEFINED_SEVERITY"
+    },
+    "eventsStatus": {
+      "type": "string",
+      "enum": [
+        "UNDEFINED_STATUS",
+        "TRIGGERED",
+        "ACKNOWLEDGED",
+        "RESOLVED"
+      ],
+      "default": "UNDEFINED_STATUS"
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "resourceListRequest": {
+      "type": "object",
+      "properties": {
+        "pageToken": {
+          "type": "string"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "resourceListResponse": {
+      "type": "object",
+      "properties": {
+        "nextPageToken": {
+          "type": "string"
+        }
+      }
+    },
+    "tenantTenantReq": {
+      "type": "object",
+      "properties": {
+        "accountID": {
+          "type": "string"
+        },
+        "tenantID": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
